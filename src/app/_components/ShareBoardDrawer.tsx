@@ -17,8 +17,8 @@ import {
 export function ShareBoardDrawer() {
   return (
     <Drawer>
-      <DrawerTrigger>
-        <Button variant="outline">Share this board</Button>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Share</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>

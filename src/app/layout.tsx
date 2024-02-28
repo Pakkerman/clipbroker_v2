@@ -1,11 +1,12 @@
 import "~/styles/globals.css"
 
-import { Roboto_Mono as Inter } from "next/font/google"
+import { Roboto_Mono as FontSans } from "next/font/google"
 
 import { TRPCReactProvider } from "~/trpc/react"
 import { Toaster } from "~/components/ui/sonner"
+import { cn } from "~/lib/utils"
 
-const inter = Inter({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
@@ -23,7 +24,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body
+        vaul-drawer-wrapper=""
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <TRPCReactProvider>{children}</TRPCReactProvider>
         <Toaster />
       </body>
