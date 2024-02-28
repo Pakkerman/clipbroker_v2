@@ -1,4 +1,5 @@
 "use client"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 import { toast } from "sonner"
 import { Button } from "~/components/ui/button"
@@ -20,25 +21,22 @@ import { Separator } from "~/components/ui/separator"
 
 function Content() {
   const { data, isLoading } = api.content.getAll.useQuery({ boardId: 0 })
+  const [animationParent] = useAutoAnimate()
   // const { data, isLoading } = api.content.getLatest.useQuery({ boardId: "0" })
-
-  console.log(data)
 
   if (isLoading) return <p>loading</p>
 
   return (
-    <ScrollArea className="h-40 w-48 rounded-md border">
-      <div className="p-4">
+    <ScrollArea className="h-[400px] w-[80vw] max-w-[500px] border rounded-md">
+      <ul ref={animationParent} className="p-4">
         {data &&
           data.map((item) => (
-            <>
-              <div key={item.id} className="text-sm">
-                {item.text}
-              </div>
+            <li key={item.id} className="text-sm">
+              {item.text}
               <Separator className="my-2" />
-            </>
+            </li>
           ))}
-      </div>
+      </ul>
     </ScrollArea>
   )
 }
