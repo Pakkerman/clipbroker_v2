@@ -1,5 +1,6 @@
 import { postRouter } from "~/server/api/routers/post"
 import { contentRouter } from "~/server/api/routers/content"
+import { fileRouter } from "./routers/file"
 
 import { createTRPCRouter } from "~/server/api/trpc"
 
@@ -11,6 +12,7 @@ import { createTRPCRouter } from "~/server/api/trpc"
 export const appRouter = createTRPCRouter({
   post: postRouter,
   content: contentRouter,
+  file: fileRouter,
 })
 
 // export type definition of API

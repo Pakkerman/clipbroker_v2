@@ -5,6 +5,7 @@ import { sql } from "drizzle-orm"
 import {
   bigint,
   index,
+  int,
   mysqlTableCreator,
   timestamp,
   varchar,
@@ -53,6 +54,9 @@ export const contents = createTable("content", {
 
 export const files = createTable("files", {
   id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
+  key: varchar("key", { length: 256 }).notNull(),
+  size: int("size", { unsigned: true }).notNull(),
+  name: varchar("name", { length: 256 }).notNull(),
   url: varchar("url", { length: 256 }).notNull(),
   createdAt: timestamp("create_at")
     .default(sql`CURRENT_TIMESTAMP`)

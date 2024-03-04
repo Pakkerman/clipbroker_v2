@@ -3,7 +3,6 @@ import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 import { toast } from "sonner"
 import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
 import { api } from "~/trpc/react"
 
 export function Clipboard() {
@@ -11,9 +10,10 @@ export function Clipboard() {
 
   return (
     <div className="h-full border-[0.5px] border-white-90 rounded-xl w-full flex flex-col items-center justify-center">
-      <Content />
+      <Content view={view} />
       <Menu view={view} setView={setView} />
-      <CreateContentWizard />
+      {view === "text" && <CreateContentWizard />}
+      {view === "file" && <Uploadthing />}
       <ShareBoardDrawer />
     </div>
   )
@@ -22,24 +22,42 @@ export function Clipboard() {
 import { ScrollArea } from "~/components/ui/scroll-area"
 import { Separator } from "~/components/ui/separator"
 
-function Content() {
-  const { data, isLoading } = api.content.getAll.useQuery({ boardId: 0 })
+type ContentProps = { view: "text" | "file" }
+function Content(props: ContentProps) {
+  const { view } = props
+  const { data: contentData, isLoading: contentIsLoading } =
+    api.content.getAll.useQuery({
+      boardId: 0,
+    })
+  const { data: filesData, isLoading: fileIsLoading } =
+    api.file.getAll.useQuery({ boardId: 0 })
   const [animationParent] = useAutoAnimate()
   // const { data, isLoading } = api.content.getLatest.useQuery({ boardId: "0" })
 
-  if (isLoading) return <p>loading</p>
+  if (contentIsLoading || fileIsLoading) return <p>loading</p>
 
   return (
     <ScrollArea className="h-[400px] w-[80vw] max-w-[500px] border rounded-md">
-      <ul ref={animationParent} className="p-4">
-        {data &&
-          data.map((item) => (
+      {view === "text" && (
+        <ul ref={animationParent} className="p-4">
+          {contentData?.map((item) => (
             <li key={item.id} className="text-sm">
               {item.text}
               <Separator className="my-2" />
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
+      {view === "file" && (
+        <ul ref={animationParent} className="p-4">
+          {filesData?.map((item) => (
+            <li key={item.id} className="text-sm">
+              {item.url}
+              <Separator className="my-2" />
+            </li>
+          ))}
+        </ul>
+      )}
     </ScrollArea>
   )
 }
@@ -69,6 +87,8 @@ import { Textarea } from "~/components/ui/textarea"
 import { ShareBoardDrawer } from "./ShareBoardDrawer"
 import { Menu } from "./Menu"
 import { useState } from "react"
+import { UploadButton } from "~/utils/uploadthing"
+import { Uploadthing } from "./uploadthing"
 
 const formSchema = z.object({
   text: z.string().min(2, {
@@ -87,7 +107,7 @@ export function ContentForm() {
   const utils = api.useUtils()
   const { mutate: clearAll } = api.content.deleteAll.useMutation({
     onSuccess: () => {
-      utils.content.getAll.invalidate()
+      void utils.content.getAll.invalidate()
       toast.success("board cleared!")
     },
   })
@@ -97,10 +117,10 @@ export function ContentForm() {
     },
     onSuccess: () => {
       form.setValue("text", "")
-      utils.content.getAll.invalidate()
+      void utils.content.getAll.invalidate()
       toast.success("pasted to board!", { id: "creation toast" })
     },
-    onError: () => {},
+    // onError: () => { },
   })
 
   const onSubmit: SubmitHandler<FormSchema> = ({ text }) => {
