@@ -3,8 +3,8 @@ import "~/styles/globals.css"
 import { Roboto_Mono as FontSans } from "next/font/google"
 
 import { TRPCReactProvider } from "~/trpc/react"
-import { Toaster } from "~/components/ui/sonner"
-import { cn } from "~/lib/utils"
+import { Toaster } from "~/app/ui/sonner"
+import { cn } from "~/utils/utils"
 
 const fontSans = FontSans({
   subsets: ["latin"],

@@ -1,10 +1,13 @@
 "use client"
 
 import { api } from "~/trpc/react"
-import { Button } from "~/components/ui/button"
+import { Button } from "~/app/ui/button"
 import { toast } from "sonner"
 
-type DeleteContentButton = any
+type DeleteContentButton = {
+  id: number
+  text: string
+}
 export function DeleteContentButton({ id, text }: DeleteContentButton) {
   const { invalidate } = api.useUtils().content
   const { mutate, isLoading } = api.content.deleteById.useMutation({
@@ -12,14 +15,14 @@ export function DeleteContentButton({ id, text }: DeleteContentButton) {
       toast.loading(`deleting`, { id: "delete-content-toast" })
     },
     onSuccess: () => {
-      invalidate()
+      void invalidate()
       toast.success(`deleted ${text}`, { id: "delete-content-toast" })
     },
   })
 
   return (
     <Button size="icon" onClick={() => mutate({ id })}>
-      T
+      D
     </Button>
   )
 }

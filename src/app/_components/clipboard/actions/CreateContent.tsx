@@ -1,10 +1,10 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { type SubmitHandler, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Button } from "~/components/ui/button"
+import { Button } from "~/app/ui/button"
 
 import {
   Form,
@@ -14,9 +14,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form"
+} from "~/app/ui/form"
 
-import { Textarea } from "~/components/ui/textarea"
+import { Textarea } from "~/app/ui/textarea"
 import { api } from "~/trpc/react"
 
 const formSchema = z.object({

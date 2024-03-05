@@ -1,22 +1,12 @@
 "use client"
 
-import { Dispatch, SetStateAction, useState } from "react"
-import { Button, buttonVariants } from "~/components/ui/button"
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "~/components/ui/menubar"
-
+import type { Dispatch, SetStateAction } from "react"
+import { Button } from "~/app/ui/button"
 type MenuProps = {
   view: "text" | "file"
   setView: Dispatch<SetStateAction<"text" | "file">>
 }
-export function Menu(props: MenuProps) {
+export function Tabs(props: MenuProps) {
   const { view, setView } = props
 
   return (

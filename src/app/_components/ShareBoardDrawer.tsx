@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "~/components/ui/button"
+import { Button } from "~/app/ui/button"
 import {
   Drawer,
   DrawerClose,
@@ -12,7 +12,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "~/components/ui/drawer"
+} from "~/app/ui/drawer"
 
 export function ShareBoardDrawer() {
   return (

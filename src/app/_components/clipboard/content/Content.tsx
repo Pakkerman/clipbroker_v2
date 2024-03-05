@@ -2,12 +2,14 @@
 
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 
-import { toast } from "sonner"
-import { Button } from "~/components/ui/button"
+import { Button } from "~/app/ui/button"
 import { api } from "~/trpc/react"
 
-import { ScrollArea } from "~/components/ui/scroll-area"
-import { Separator } from "~/components/ui/separator"
+import { Badge } from "~/app/ui/badge"
+import { DeleteContentButton } from "./buttons/DeleteContentButton"
+
+import { ScrollArea } from "~/app/ui/scroll-area"
+import { Separator } from "~/app/ui/separator"
 
 type ContentProps = { view: "text" | "file" }
 export function Content(props: ContentProps) {
@@ -58,32 +60,3 @@ export function Content(props: ContentProps) {
     </ScrollArea>
   )
 }
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { z } from "zod"
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form"
-import { Textarea } from "~/components/ui/textarea"
-import { ShareBoardDrawer } from "../../ShareBoardDrawer"
-import { Menu } from "../../Menu"
-import { useState } from "react"
-import { UploadButton } from "~/utils/uploadthing"
-import { Uploadthing } from "../../uploadthing"
-import { Badge } from "~/components/ui/badge"
-import { DeleteContentButton } from "../buttons/DeleteContentButton"
-
-const formSchema = z.object({
-  text: z.string().min(2, {
-    message: "missing input",
-  }),
-})
-type FormSchema = z.infer<typeof formSchema>
