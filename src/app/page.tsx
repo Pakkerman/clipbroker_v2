@@ -1,4 +1,4 @@
-import { Clipboard } from "./_components/clipboard"
+import { Clipboard } from "./_components/clipboard/clipboard"
 
 export default async function Home() {
   return (
