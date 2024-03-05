@@ -1,28 +1,19 @@
-# Create T3 App
+# Clipbroker_v2
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Having trouble copying stuff among your devices? Clipbroker is here to help. A web clipboard that can easily enable you to copy text across platforms, as long as you have internet access and a webrwoser.
 
-## What's next? How do I make an app with this?
+### Core Features
+- Create and copy texts across devices
+- Simple file uploader for quickly trasnfer file to another device
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
+### Build with
+- [Create T3 App](https://create.t3.gg/)
 - [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
+- [DrizzleORM](https://orm.drizzle.team/)
 - [tRPC](https://trpc.io)
+- [Tailwind CSS](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com/)
+- Database powered by [PlanetScale](https://app.planetscale.com/)
+- File upload powered by [Uploadthing](https://uploadthing.com/)
+- Deployed on [Vercel](https://vercel.com/)
 
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
